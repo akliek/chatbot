@@ -9,7 +9,6 @@ chatbot = ChatBot(
     logic_adapters=[
         {
             'import_path': 'chatterbot.logic.BestMatch',
-            'default_response': 'I am sorry, but I do not understand.',
             'maximum_similarity_threshold': 0.85,
             'response_selection_method': get_random_response
         },
@@ -18,18 +17,15 @@ chatbot = ChatBot(
             'statement_comparison_function': 'chatterbot.comparisons.levenshtein_distance',
             'response_selection_method': get_random_response,
             'threshold': 0.65,
-            'default_response': 'I am sorry, but I do not understand.'
         },
         {
-            'import_path': 'chatterbot.logic.MathematicalEvaluation'
+            'import_path': 'chatterbot.logic.MathematicalEvaluation',
+            'response_selection_method': 'chatterbot.response_selection.get_random_response'
         },
         {
-            'import_path': 'chatterbot.logic.TimeLogicAdapter'
+            'import_path': 'chatterbot.logic.TimeLogicAdapter',
+            'response_selection_method': 'chatterbot.response_selection.get_random_response'
         },
-        {
-            'import_path': 'chatterbot.logic.BestMatch',
-            'default_response': 'I am sorry, but I do not understand.'
-        }
     ],
     database_uri='sqlite:///database.sqlite3'
 )
